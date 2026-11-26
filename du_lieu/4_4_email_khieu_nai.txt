@@ -1,0 +1,36 @@
+EMAIL KHIẾU NẠI CỦA KHÁCH
+
+Gia đình tôi 3 người đã đặt lịch cạo vôi răng. Cả 2 lần hẹn ngày 05/11/2026 và 12/11/2026 chúng tôi đều phải chờ hơn 1 tiếng so với giờ hẹn. Bác sĩ Nam khám rất kỹ, tôi không có gì phàn nàn về bác sĩ. Tôi đề nghị phòng khám giải quyết thỏa đáng.
+
+======================================================
+CHÍNH SÁCH ĐỀN BÙ CỦA NHA KHOA NỤ CƯỜI
+======================================================
+
+- tre_hen: khách phải chờ quá 45 phút so với giờ hẹn: hoàn 100.000 đồng/khách cho mỗi lần hẹn bị trễ.
+- thiet_bi: thiết bị hỏng, khách phải hẹn lại: tặng voucher 100.000 đồng/khách.
+- bac_si: khiếu nại về thái độ bác sĩ, nhân viên: tặng voucher 200.000 đồng/khách.
+- khac: chuyển bộ phận Chăm sóc khách hàng xem xét, chưa đề xuất mức đền bù.
+- Tổng mức đền bù trên 500.000 đồng phải được Giám đốc phòng khám duyệt trước khi gửi khách.
+
+======================================================
+ĐỊNH DẠNG ĐẦU RA CỦA TRẠM 1 (sinh viên viết prompt)
+======================================================
+
+Trạm 1 – đọc email, trả về chỉ một đối tượng JSON gồm đúng 4 trường:
+{"loai_su_co": một trong "tre_hen" | "thiet_bi" | "bac_si" | "khac", "so_khach": số nguyên, "so_lan_hen_bi_tre": số nguyên hoặc null, "tom_tat": "không quá 20 từ"}
+
+======================================================
+PROMPT TRẠM 2 (đã có sẵn, không cần viết)
+======================================================
+
+Dưới đây là kết quả phân loại khiếu nại (JSON của Trạm 1) và chính sách đền bù. Chỉ dùng chính sách trong thẻ <chinh_sach> để tính tổng mức đền bù. Trả về đúng một đối tượng JSON, không giải thích:
+{"loai_su_co": ..., "muc_den_bu": tổng số tiền (đồng) hoặc null, "can_duyet": true nếu muc_den_bu trên 500.000, ngược lại false}
+<ket_qua_tram_1>(JSON của Trạm 1)</ket_qua_tram_1>
+<chinh_sach>(chính sách đền bù ở trên)</chinh_sach>
+
+======================================================
+PROMPT TRẠM 3 (đã có sẵn, không cần viết)
+======================================================
+
+Bạn là nhân viên chăm sóc khách hàng của Nha khoa Nụ Cười. Dựa trên JSON trong thẻ <ket_qua_tram_2>, viết email phản hồi khách: xin lỗi, nêu đúng mức đền bù trong JSON, không tự đặt mức khác, giọng điệu chân thành, chuyên nghiệp, dưới 150 từ.
+<ket_qua_tram_2>(JSON của Trạm 2)</ket_qua_tram_2>
